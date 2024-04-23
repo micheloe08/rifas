@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Livewire\ClientesFront;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::view('clientesfront', 'ClientesFront.clientes-front')
+    ->name('clientes-front');
+
+Route::get('/venta', function () {
+    return view('clientesfront.index');
+});
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -25,4 +31,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::view('sorteos', 'sorteos.index')
+    ->name('sorteos');
+    Route::view('clientes', 'clientes.index')
+    ->name('clientes');
+    Route::view('dash', 'livewire.dashboard')
+    ->name('dash');
 });
