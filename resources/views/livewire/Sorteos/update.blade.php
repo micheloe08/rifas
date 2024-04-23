@@ -1,0 +1,3 @@
+@if ($searchterm)
+    {{ $searchterm }}
+@endif
