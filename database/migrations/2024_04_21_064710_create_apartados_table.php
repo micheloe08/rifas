@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('cliente_id')->constrained('clientes');
             $table->foreignId('sorteo_id')->constrained('sorteos');
             $table->string('boletos');
+            $table->float('costo_total');
             $table->integer('pronto_pago')->nullable()->default(0);
             $table->integer('promo')->nullable()->default(0);
             $table->string('estatus')->nullable()->default('Apartado');

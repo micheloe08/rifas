@@ -1,5 +1,5 @@
 
-    <div class="grid gap-12 mb-12 md:grid-cols-2">
+    <div class="grid gap-12 mb-12 md:grid-cols-2  dark:bg-dark-eval-1">
         <div>
             <x-card title="Numero de clientes" informacion="50" ruta="{{ route('clientes') }}">
                 <ul class="font-medium text-white">

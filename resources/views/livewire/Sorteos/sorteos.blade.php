@@ -1,4 +1,4 @@
-<div>
+<div class="dark:bg-gray-800 max-w-7xl2">
 
     @if($updateMode)
         @include('livewire.Sorteos.update')

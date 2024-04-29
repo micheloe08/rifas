@@ -5,7 +5,7 @@
     'ruta' => 'nada',
     'slot' => 'nada'
 ])
-<div class="max-w-sm max-w-md max-w-xs p-1 bg-yellow border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+<div class="max-w-sm p-1 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">{{$title}}</h5>
     </a>
