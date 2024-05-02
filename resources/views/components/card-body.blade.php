@@ -5,7 +5,7 @@
     'slot' => 'nada',
     'texto_boton' => 'Borrar'
 ])
-<div class="max-w-sm p-1 rounded-lg shadow dark:bg-white dark:border-gray-700">
+<div class="max-w-sm p-1 text-center rounded-lg shadow dark:bg-white dark:border-gray-700">
     <a href="#">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-black dark:text-black">{{$title}}</h5>
     </a>

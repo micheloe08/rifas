@@ -5,13 +5,13 @@
     <div class="dark:bg-gray-800 max-w-7xl2">
         <div class="p-1 mb-4 text-xl text-white text-center rounded-lg bg-gray-800 dark:bg-gray-800 dark:text-white" role="alert">
             <span class="font-medium"> {{ $datas->descripcion }}</span><br/>
-            <span class="font-medium"> Precios desde: ${{ $datas->costo }}</span>
+            <span class="font-medium"> <h1>Aparta tus Boletos</h1></span>
           </div>
 <div class="grid gap-12 mb-12 md:grid-cols-1">
     <input type="hidden" wire:model.defer="cliente_id">
     <div>
         <label for="searchterm" class="block mb-2 text-sm font-medium text-gray">Teléfono</label>
-        <input type="text" id="searchterm" wire:model.bounced.2000ms="searchterm" class="{{ $errors->has('searchterm') ? ' border-red-500' : 'border-gray-200' }} bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:change = "search">
+        <input type="text" id="searchterm" wire:model="searchterm" class="{{ $errors->has('searchterm') ? ' border-red-500' : 'border-gray-200' }} bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:keydown = "search">
         @error('searchterm')
         <span class="text-red-500 text-xs italic">{{ $message }}</span>
         @enderror

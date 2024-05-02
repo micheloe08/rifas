@@ -58,15 +58,17 @@ class ClientesFront extends Component
     {
 
         $this->validate([
-            'searchterm' => 'required|min:10'
+            'searchterm' => 'required|min:10',
         ]);
-        $this->data = Clientes::where('telefono', '=', $this->searchterm)->first();
-        $this->cliente_id = $this->data->id;
-        $this->nombre = $this->data->nombre;
-        $this->estado = $this->data->estado;
-        $this->ciudad = $this->data->ciudad;
+        if($this->data = Clientes::where('telefono', '=', $this->searchterm)->first())
+        {
+            $this->cliente_id = $this->data->id;
+            $this->nombre = $this->data->nombre;
+            $this->estado = $this->data->estado;
+            $this->ciudad = $this->data->ciudad;
+            $this->disabled = false;
+        }
         $this->disabled = false;
-
     }
 
     public function VerificarBoletos()
@@ -102,6 +104,15 @@ class ClientesFront extends Component
             'estado' => 'required',
             'ciudad' => 'required'
         ]);
+        if (!$this->cliente_id) {
+            Clientes::create([
+                'telefono' => $this->searchterm,
+                'nombre' => $this->nombre,
+                'estado' => $this->estado,
+                'ciudad' => $this->ciudad
+            ]);
+            $this->cliente_id = Clientes::latest()->first()->id;
+        }
         $cantidad = count($this->numerosElegidos);
         $this->costo_final = ($cantidad * $this->datas->costo);
         Apartados::create([
