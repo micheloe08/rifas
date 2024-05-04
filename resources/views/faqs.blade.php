@@ -1,8 +1,8 @@
 <div class="dark:bg-gray-800 max-w-7xl2">
-    <div class="p-1 mb-4 text-xl text-white text-center rounded-lg bg-gray-800 dark:bg-gray-800 dark:text-white" role="alert">
+    <div class="p-1 mb-4 text-xl text-white text-center rounded-lg bg-white dark:bg-gray-800 dark:text-black" role="alert">
        <h1>Pasos para Apartar tus Boletos</h1><br>
        <div class="grid gap-12 mb-12 md:grid-cols-3 sm-gap-4">
-        <div class="mr-3 ml-3">
+        <div>
             <x-card title="Paso 1:" informacion="50" ruta="{{ route('clientes') }}">
                 <ul class="font-medium text-black">
                     <li>
@@ -11,7 +11,7 @@
                 </ul>
             </x-card>
         </div>
-        <div class="mr-3 ml-3">
+        <div>
             <x-card title="Paso 2:" informacion="50" ruta="{{ route('clientes') }}">
                 <ul class="font-medium text-black">
                     <li>
@@ -20,7 +20,7 @@
                 </ul>
             </x-card>
         </div>
-        <div class="mr-3 ml-3">
+        <div>
             <x-card title="Paso 3:" informacion="50" ruta="{{ route('clientes') }}">
                 <ul class="font-medium text-black">
                     <li>
@@ -34,7 +34,7 @@
 
         </div>
         <div class="grid gap-12 mb-12 md:grid-cols-1">
-           <a href="/venta" wire:navigate> <button type="button" class="px-3 py-2 bg-green-700 text-white hover:bg-green-500 hover:text-white rounded">Compra los tuyos</button> </a>
+           <a href="/venta" wire:navigate> <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Compra los tuyos</button> </a>
         </div>
     </div>
     </div>
