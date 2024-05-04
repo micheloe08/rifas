@@ -1,14 +1,16 @@
 
 @props([
-    'title' => 'Default',
     'informacion' => 'Default',
     'ruta' => 'nada',
-    'slot' => 'nada'
+    'slot' => 'nada',
+    'imagen' => '',
+    'texto' => 'text-center'
 ])
-<div class="max-w-sm p-1 rounded-lg  text-2xl">
-    <a href="#">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-black dark:text-black">{{$title}}</h5>
-    </a>
+<div class="w-full xl:w-1/2 {{ $texto }} rounded-lg border-green-400 solid">
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <img src = "{{ $imagen }}" class="w-full xl:w-1/2 mb-3"/>
+    </div>
         {{$slot}}
     <div class="pt-5">
 

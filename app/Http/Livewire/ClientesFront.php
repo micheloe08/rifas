@@ -22,6 +22,7 @@ class ClientesFront extends Component
     public $showModal = false;
     public $newClass = false;
     public $cadena_final, $costo_final;
+    public $buscar = '';
 
     public function render()
     {
@@ -100,7 +101,7 @@ class ClientesFront extends Component
     {
         $this->validate([
             'nombre' => 'required',
-            'searchterm' => 'required|integer|min_digits:10|max_digits:10',
+            'searchterm' => 'required',
             'estado' => 'required',
             'ciudad' => 'required'
         ]);
@@ -139,6 +140,23 @@ class ClientesFront extends Component
             $this->cadena_final = implode(', ', $cadenas);
             $this->newClass = true;
             $this->render();
+    }
+
+    public function buscarDato()
+    {
+        $numero = DB::select('select detalles.boleto FROM
+        detalles
+        INNER JOIN apartados on detalles.apartado_id = apartados.id
+        INNER JOIN sorteos on apartados.sorteo_id = sorteos.id
+        where sorteos.status = 1 and detalles.boleto = :numero', ['numero' => $this->buscar]);
+
+        if (!$numero) {
+            $this->selecciona($this->buscar);
+            $this->buscar = '';
+        } else {
+            session()->flash('message', 'Numero ya apartado');
+            $this->buscar = '';
+        }
     }
 
 }

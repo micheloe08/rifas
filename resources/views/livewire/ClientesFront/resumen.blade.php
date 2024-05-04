@@ -1,15 +1,10 @@
 <div class="dark:bg-gray-800 max-w-1/2 W-1/2 ">
-            <div class="p-1 mb-4 text-xl text-white text-center rounded-lg bg-gray-800 dark:bg-gray-800 dark:text-white" role="alert">
+    <div class="p-1 mb-4 text-xl text-center rounded-lg  text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80" role="alert">
                 <span class="font-medium border-cyan-700 border-spacing-1"> Este boleto es válido siempre y cuando realices tu pago en el tiempo correspondiente y envíes tu comprobante de pago a nuestro WhatsApp. (No ocupas alguna otra confirmación)</span>
             </div>
-        <div class="grid gap-12 mb-12 md:grid-cols-2 sm-gap-4 ">
-            <div class="mr-3 ml-3">
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <img src = "{{ asset('storage/'.$datas->imagen1) }}"/>
-                </div>
-            </div>
-            <div class="mr-3 ml-3">
-                <x-card title="Apartado" informacion="50" ruta="{{ route('clientes') }}">
+        <div class="flex gap-12 mb-12 md:grid-cols-1 sm-gap-4 border-green-500">
+            <div class="w-full">
+                <x-card title="Apartado" informacion="50" ruta="{{ route('clientes') }}" imagen="{{ asset('storage/'.$datas->imagen1) }}" texto='text-left'>
                     <span class="font-bold text-green-500">{{"Nombre:"}}</span> {{$nombre}}<br/><br>
                     <span class="font-bold text-green-500">{{"Ubicación:"}}</span> {{$ciudad}} {{", "}} {{$estado}}<br/><br>
                     <span class="font-bold text-green-500">{{"Monto a Pagar: $"}}</span> {{ number_format($costo_final, 2) }}<br/><br>
@@ -17,11 +12,11 @@
                 </x-card>
             </div>
         </div>
-        <div class="p-1 mb-4 text-xl text-white text-center rounded-lg bg-gray-500 dark:text-white" role="alert">
+        <div class="p-1 mb-4 text-xl text-white text-center rounded-lg bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80" role="alert">
             <span class="font-medium border-cyan-700 border-spacing-1"> ⚠️Atención este es tu boleto oficial⚠️, toma una captura de pantalla y guardala.<br> (✅ = pago confirmado, ⏳ = pago pendiente)</span>
         </div>
         <div class="container py-10 px-10 mx-0 min-w-full flex flex-col items-center">
-            <button class="bg-green-700 text-white hover:bg-green-500 font-bold py-2 px-4 mt-3 rounded"><a href="https://wa.me/5216721268972?text=Hola+qué+tal!+Aparte+los+siguientes+numeros+{{$cadena_final}}.%0A%0AEn+la+Edición+{{ $datas->descripcion }}%0A%0ANombre:+{{$nombre}}%0A%0AAtención%0A%0A------------------------------------------%0A%0AEl siguiente paso es enviar foto del comprobante de pago por aquí%0A%0ATus boletos quedan apartados por 24 hrs%0A%0A">TERMINAR</a></button>
+            <button class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><a href="https://wa.me/5216721268972?text=Hola+qué+tal!+Aparte+los+siguientes+numeros+{{$cadena_final}}.%0A%0AEn+la+Edición+{{ $datas->descripcion }}%0A%0ANombre:+{{$nombre}}%0A%0AAtención%0A%0A------------------------------------------%0A%0AEl siguiente paso es enviar foto del comprobante de pago por aquí%0A%0ATus boletos quedan apartados por 24 hrs%0A%0A">TERMINAR</a></button>
           </div>
         <div class="grid gap-4 mb-4 w-full bg-gray-200">
             <dl class="max-w-full text-white divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
@@ -45,4 +40,17 @@
         </div>
 </div>
 
-https://wa.me/526331266805?&text=Hola,%20Aparte%20los%20siguientes%20N%C3%BAmeros,%2012192.%0a%0aEdici%C3%B3n,%20GRAN%20EDICION%20%2368%0a%0aNombre:%20Oscar%20Michel%20Velazquez%20Arredondo%0a%0a-------------%0a%0aClick%20para%20ver%20las%20cuentas%20para%20Realizar%20el%20Pago%20%0a%20https%3A%2F%2Fsorteossonorense.com%2Fmetodos-de-pago%0a%0aM%C3%A1ndanos%20por%20este%20medio%20el%20comprobante%20de%20pago.%20%0a%0aClick%20para%20ver%20el%20estatus%20de%20tus%20n%C3%BAmeros%20%F0%9F%91%87%F0%9F%8F%BC%20https://sorteossonorense.com/evento/edicion-68/ticket/6677519117%20%0a%0aEnv%C3%ADanos%20este%20mensaje%20%3E%3E%3E%3E%0a%0a
+<div class="max-w-sm rounded overflow-hidden shadow-lg">
+    <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains">
+    <div class="px-6 py-4">
+      <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+      <p class="text-gray-700 text-base">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+      </p>
+    </div>
+    <div class="px-6 pt-4 pb-2">
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+    </div>
+  </div>
