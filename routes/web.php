@@ -17,8 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('clientesfront', 'ClientesFront.clientes-front')
-    ->name('clientes-front');
+Route::view('principal', 'Principal.index')
+    ->name('principal');
 
 Route::get('/venta', function () {
     return view('clientesfront.index');
