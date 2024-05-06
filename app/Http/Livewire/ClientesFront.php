@@ -169,7 +169,8 @@ class ClientesFront extends Component
     public function aleatorio()
     {
         $contador = 0;
-        $this->animar = true;
+        $this->open = false;
+        $this->animar = false;
 
             do {
                 $eleccion = mt_rand(1,99999);
@@ -186,9 +187,6 @@ class ClientesFront extends Component
             while ($contador <= $this->cantidad_boletos);
             $this->alerta = true;
             session()->flash('message', 'Generados Correctamente');
-            $this->open = false;
-            $this->animar = false;
-
     }
 
 }
