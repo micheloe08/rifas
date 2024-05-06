@@ -1,7 +1,7 @@
 <div class="dark:bg-gray-800 max-w-7xl2">
     <div class="p-1 mb-4 text-xl text-white text-center rounded-lg bg-white dark:bg-gray-800 dark:text-black" role="alert">
        <h1>Pasos para Apartar tus Boletos</h1><br>
-       <div class="grid gap-12 mb-12 md:grid-cols-3 sm-gap-4">
+       <div class="grid gap-4 mb-2 md:grid-cols-3 sm-gap-4">
         <div>
             <x-card title="Paso 1:" informacion="50" ruta="{{ route('clientes') }}">
                 <ul class="font-medium text-black">
@@ -30,17 +30,24 @@
                 </ul>
             </x-card>
         </div>
-        <div class="pt-5">
+        <div class="pt-2">
 
         </div>
-        <div class="grid gap-12 mb-12 md:grid-cols-1">
-           <a href="/venta" wire:navigate> <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Compra los tuyos</button> </a>
-        </div>
     </div>
+    <div class="grid gap-4 mb-4 md:grid-cols-1">
+        <a href="/venta" wire:navigate> <button type="button" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Compra tus boletos aqui ☝🏻</button> </a>
+     </div>
+     <div class="pt-2">
+
+     </div>
+     <div class="grid gap-4 mb-4 md:grid-cols-1">
+        <a href="/venta" wire:navigate> <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Consulta tus boletos aqui! 🎫🤞🏻</button> </a>
+     </div>
     </div>
-    <div class="pt-5">
+    <div class="pt-2">
 
     </div>
+
     <div class="grid gap-4 mb-2 md:grid-cols-1">
         <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
             <img class="relative overflow-x-auto shadow-md sm:rounded-lg" src="https://sorteossonorense.com/assets/loteria.png" alt="">

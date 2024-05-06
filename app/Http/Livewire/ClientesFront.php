@@ -11,7 +11,7 @@ use App\Models\Detalle;
 
 class ClientesFront extends Component
 {
-    public $data, $searchterm, $tarjetas, $telefono, $estatus, $nombre, $pronto_pago, $estado, $ciudad, $selected_id, $cliente, $boletos, $boletos_disponibles, $numeros, $datas, $promo, $cliente_id;
+    public $data, $searchterm, $tarjetas, $telefono, $cantidad_boletos, $estatus, $nombre, $pronto_pago, $estado, $ciudad, $selected_id, $cliente, $boletos, $boletos_disponibles, $numeros, $datas, $promo, $cliente_id;
     public $updateMode = false;
     public $muestraBoletos = false;
     public $cantidadBoletos = '';
@@ -23,6 +23,9 @@ class ClientesFront extends Component
     public $newClass = false;
     public $cadena_final, $costo_final;
     public $buscar = '';
+    public $open = false;
+    public $animar = false;
+    public $alerta = false;
 
     public function render()
     {
@@ -59,7 +62,7 @@ class ClientesFront extends Component
     {
 
         $this->validate([
-            'searchterm' => 'required|min:10',
+            'searchterm' => 'required|min_digits:10|max_digits:13',
         ]);
         if($this->data = Clientes::where('telefono', '=', $this->searchterm)->first())
         {
@@ -144,6 +147,9 @@ class ClientesFront extends Component
 
     public function buscarDato()
     {
+        $this->validate([
+            'buscar' => 'required|numeric|min:0|not_in:0|max:99999|max_digits:5'
+        ]);
         $numero = DB::select('select detalles.boleto FROM
         detalles
         INNER JOIN apartados on detalles.apartado_id = apartados.id
@@ -154,9 +160,35 @@ class ClientesFront extends Component
             $this->selecciona($this->buscar);
             $this->buscar = '';
         } else {
+            $this->alerta = false;
             session()->flash('message', 'Numero ya apartado');
             $this->buscar = '';
         }
+    }
+
+    public function aleatorio()
+    {
+        $contador = 0;
+        $this->animar = true;
+
+            do {
+                $eleccion = mt_rand(1,99999);
+                $numero = DB::select('select detalles.boleto FROM
+                    detalles
+                    INNER JOIN apartados on detalles.apartado_id = apartados.id
+                    INNER JOIN sorteos on apartados.sorteo_id = sorteos.id
+                    where sorteos.status = 1 and detalles.boleto = :numero', ['numero' => $eleccion]);
+                if (!$numero) {
+                    $this->selecciona($eleccion);
+                    $contador++;
+                }
+            }
+            while ($contador <= $this->cantidad_boletos);
+            $this->alerta = true;
+            session()->flash('message', 'Generados Correctamente');
+            $this->open = false;
+            $this->animar = false;
+
     }
 
 }
