@@ -41,7 +41,7 @@
 
      </div>
      <div class="grid gap-4 mb-4 md:grid-cols-1">
-        <a href="/venta" wire:navigate> <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Consulta tus boletos aqui! 🎫🤞🏻</button> </a>
+        <a> <button wire:click="$set('consulta', true)" type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Consulta tus boletos aqui! 🎫🤞🏻</button> </a>
      </div>
     </div>
     <div class="pt-2">
@@ -57,4 +57,32 @@
             </div>
         </a>
     </div>
+    <x-dialog-modal wire:model="consulta">
+        <x-slot name="title">
+            <span class="font-bold text-center"> <h1>Consulta aqui 👇🏻</h1></span>
+        </x-slot>
+        <x-slot name="content">
+            <div>
+                <label for="depurar" class="block mb-2 text-sm font-medium text-gray">Teléfono</label>
+                <input type="text" id="searchterm" wire:model.defer="depurar" class="{{ $errors->has('depurar') ? ' border-red-500' : 'border-lime-500' }} bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                @error('depurar')
+                <span class="text-red-500 text-xs italic">{{ $message }}</span>
+                @enderror
+            </div>
+        </x-slot>
+        <x-slot name="footer">
+            <div>
+                <button wire:click="consultarBoletos()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Consultar</button>
+            </div>
+            <div class="pt-5">
+
+            </div>
+            <div>
+                <button wire:click="$set('consulta', false)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Cancelar</button>
+            </div>
+            <div class="pt-5">
+
+            </div>
+        </x-slot>
+    </x-dialog-modal>
 </div>
