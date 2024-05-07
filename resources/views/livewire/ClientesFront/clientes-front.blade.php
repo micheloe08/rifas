@@ -45,7 +45,7 @@
         @enderror
     </div>
     <div>
-        <label for="ciudad" class="block mb-2 text-sm font-medium">Descripción</label>
+        <label for="ciudad" class="block mb-2 text-sm font-medium">Ciudad</label>
         <input type="text" id="ciudad" wire:model.defer="ciudad" class="{{ $errors->has('ciudad') ? ' border-red-500' : 'border-lime-500' }} bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         @error('ciudad')
         <span class="text-red-500 text-xs italic">{{ $message }}</span>

@@ -184,7 +184,7 @@ class ClientesFront extends Component
                     $contador++;
                 }
             }
-            while ($contador <= $this->cantidad_boletos);
+            while ($contador < $this->cantidad_boletos);
             $this->alerta = true;
             session()->flash('message', 'Generados Correctamente');
     }
