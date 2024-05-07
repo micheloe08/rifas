@@ -148,7 +148,7 @@ class ClientesFront extends Component
     public function buscarDato()
     {
         $this->validate([
-            'buscar' => 'required|numeric|min:0|not_in:0|max:99999|max_digits:5'
+            'buscar' => 'required|numeric|min:0|not_in:0|max:59999|max_digits:5'
         ]);
         $numero = DB::select('select detalles.boleto FROM
         detalles
@@ -173,7 +173,7 @@ class ClientesFront extends Component
         $this->animar = false;
 
             do {
-                $eleccion = mt_rand(1,99999);
+                $eleccion = mt_rand(1,59999);
                 $numero = DB::select('select detalles.boleto FROM
                     detalles
                     INNER JOIN apartados on detalles.apartado_id = apartados.id
