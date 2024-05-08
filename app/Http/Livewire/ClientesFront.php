@@ -11,7 +11,7 @@ use App\Models\Detalle;
 
 class ClientesFront extends Component
 {
-    public $data, $searchterm, $tarjetas, $telefono, $cantidad_boletos, $estatus, $nombre, $pronto_pago, $estado, $ciudad, $selected_id, $cliente, $boletos, $boletos_disponibles, $numeros, $datas, $promo, $cliente_id;
+    public $data, $searchterm, $color, $tarjetas, $telefono, $cantidad_boletos, $estatus, $nombre, $pronto_pago, $estado, $ciudad, $selected_id, $cliente, $boletos, $boletos_disponibles, $numeros, $datas, $promo, $cliente_id;
     public $updateMode = false;
     public $muestraBoletos = false;
     public $cantidadBoletos = '';

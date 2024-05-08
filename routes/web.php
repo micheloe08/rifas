@@ -23,6 +23,9 @@ Route::view('principal', 'Principal.index')
 Route::get('/venta', function () {
     return view('clientesfront.index');
 });
+Route::get('/metodos', function () {
+    return view('livewire.ClientesFront.metodos');
+});
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -37,4 +40,6 @@ Route::middleware([
     ->name('clientes');
     Route::view('dash', 'livewire.dashboard')
     ->name('dash');
+    Route::view('apartado', 'apartado.index')
+    ->name('apartado');
 });

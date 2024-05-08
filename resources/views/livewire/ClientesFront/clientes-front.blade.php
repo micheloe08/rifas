@@ -88,7 +88,7 @@
 </div>
 <div id = "lista" class="list__buttons w-5/5 bg-gray-50 max-h-screen h-96 overflow-y-auto">
     @foreach ($numeros as $item)
-        <button class="max-w-12 px-3 py-2 text-xs font-small text-left text-white bg-gray-700 hover:bg-gray-500" wire:click = "selecciona({{$item}})" wire.key ="{{$item}}">{{mb_str_pad($item, 5, '0', STR_PAD_LEFT)}}</button>
+        <button id="{{$item}}"  class="max-w-12 px-3 py-2 text-xs font-small text-left text-white bg-gray-700 hover:bg-gray-500" wire:click = "selecciona({{$item}})" wire.key ="boleto_{{$item}}">{{mb_str_pad($item, 5, '0', STR_PAD_LEFT)}}</button>
     @endforeach
 </div>
 
