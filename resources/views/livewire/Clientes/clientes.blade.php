@@ -25,6 +25,7 @@
                     <td colspan="4" class="py-3 italic">No hay información</td>
                 </tr>
             @endforelse
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
