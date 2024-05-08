@@ -118,31 +118,37 @@ class ClientesFront extends Component
             $this->cliente_id = Clientes::latest()->first()->id;
         }
         $cantidad = count($this->numerosElegidos);
-        $this->costo_final = ($cantidad * $this->datas->costo);
-        Apartados::create([
-            'cliente_id' => $this->cliente_id,
-            'sorteo_id' => $this->datas->id,
-            'boletos' => $cantidad,
-            'costo' => $this->costo_final,
-            'pronto_pago' => $this->pronto_pago ?: 0,
-            'promo' => $this->promo ?: 0,
-            'estatus' => $this->estatus ?: 'Apartado'
-        ]);
-
-        $ultimoId = Apartados::latest()->first()->id;
-        $cadenas = array();
-        foreach ($this->numerosElegidos as $elegidos)
-        {
-            Detalle::create([
-                'apartado_id' => $ultimoId,
-                'boleto' => $elegidos
+        if ($cantidad > 0) {
+            $this->costo_final = ($cantidad * $this->datas->costo);
+            Apartados::create([
+                'cliente_id' => $this->cliente_id,
+                'sorteo_id' => $this->datas->id,
+                'boletos' => $cantidad,
+                'costo' => $this->costo_final,
+                'pronto_pago' => $this->pronto_pago ?: 0,
+                'promo' => $this->promo ?: 0,
+                'estatus' => $this->estatus ?: 'Apartado'
             ]);
-            $cadenas[] = $elegidos;
-        }
-            $apartado = Apartados::latest()->first()->id;
-            $this->cadena_final = implode(', ', $cadenas);
-            $this->newClass = true;
-            $this->render();
+
+            $ultimoId = Apartados::latest()->first()->id;
+            $cadenas = array();
+            foreach ($this->numerosElegidos as $elegidos)
+            {
+                Detalle::create([
+                    'apartado_id' => $ultimoId,
+                    'boleto' => $elegidos
+                ]);
+                $cadenas[] = $elegidos;
+            }
+                $apartado = Apartados::latest()->first()->id;
+                $this->cadena_final = implode(', ', $cadenas);
+                $this->newClass = true;
+                $this->render();
+            } else {
+                $this->alerta = false;
+                session()->flash('message', 'Debes elegir al menos un número');
+            }
+
     }
 
     public function buscarDato()
