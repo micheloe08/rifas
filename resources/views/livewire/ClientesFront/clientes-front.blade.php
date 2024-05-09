@@ -90,8 +90,6 @@
     @foreach ($numeros as $item)
         <button id="{{$item}}"  class="max-w-12 px-3 py-2 text-xs font-small text-left text-white bg-gray-700 hover:bg-gray-500" wire:click = "selecciona({{$item}})" wire.key ="boleto_{{$item}}">{{mb_str_pad($item, 5, '0', STR_PAD_LEFT)}}</button>
     @endforeach
-</div>
-
 <x-dialog-modal wire:model="open">
     <x-slot name="title">
         <span class="font-bold text-center"> <h1>Elige la cantidad de boletos</h1></span>

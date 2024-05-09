@@ -35,7 +35,7 @@ class ClientesFront extends Component
         WHERE so.status = 1');
         $this->numeros = array();
         $this->boletos_disponibles = array();
-        for ($i = 1; $i <= 1000; $i++)
+        for ($i = 1; $i <= 10000 ; $i++)
         {
             array_push($this->numeros, $i);
         }
@@ -146,7 +146,7 @@ class ClientesFront extends Component
                 $this->render();
             } else {
                 $this->alerta = false;
-                session()->flash('message', 'Debes elegir al menos un número');
+                session()->flash('message', 'Debes elegir al menos uno');
             }
 
     }

@@ -5,11 +5,12 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Apartados;
 use Illuminate\Support\Facades\DB;
+use App\Models\Detalle;
 
 class Apartado extends Component
 {
     public $data, $apartado, $telefono;
-
+    public $alerta = false;
     public $muestraTelefono = false;
 
     public function render()
@@ -41,5 +42,19 @@ class Apartado extends Component
             ]);
         }
         $this->render();
+    }
+
+    public function delete($id)
+    {
+        $apartado = Apartados::findOrFail($id);
+        if ($apartado) {
+            DB::select('delete from detalles where apartado_id = :apartado', ['apartado' => $id]);
+            $apartado->delete();
+            $this->alerta = true;
+            session()->flash('message', 'Liberados Exitosamente!');
+        } else {
+            $this->alerta = false;
+            session()->flash('message', 'Fallo al Liberar!');
+        }
     }
 }
