@@ -6,6 +6,13 @@
         <div class="pt-5">
 
         </div>
+        @if (session()->has('message'))
+            @if ($alerta)
+                <x-success-alert />
+            @else
+                <x-danger-alert />
+            @endif
+        @endif
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -30,6 +37,9 @@
                             <button disabled class="px-3 py-2 bg-blue-200 text-blue-500 hover:bg-blue-500 hover:text-white rounded">Pagado</button>
                         </td>
                     @else
+                    <td scope="col">
+                        <button onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="delete({{ $item->apartado }})" class="px-3 py-2 bg-red-200 text-red-500 hover:bg-red-500 hover:text-white rounded">Liberar</button>
+                    </td>
                     <td scope="col">
                         <button onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="update({{ $item->apartado }})" class="px-3 py-2 bg-green-200 text-green-500 hover:bg-green-500 hover:text-white rounded">Pagar</button>
                     </td>
