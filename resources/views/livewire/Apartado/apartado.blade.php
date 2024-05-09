@@ -16,10 +16,8 @@
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Teléfono</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Estatus</th>
                 <th scope="col">Costo</th>
                 <th scope="col">Acciones</th>
             </tr>
@@ -27,11 +25,9 @@
         <tbody>
             @forelse ($apartado as $item)
             <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $item->apartado }} </th>
-                    <td scope="col">{{ $item->telefono }}</td>
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $item->telefono }} </th>
                     <td scope="col">{{ $item->nombre}}</td>
-                    <td scope="col">{{ $item->estatus }}</td>
-                    <td scope="col">{{ $item->costo }}</td>
+                    <td scope="col">${{ $item->costo }}.00</td>
                     @if ($item->estatus == 'Pagado')
                         <td scope="col">
                             <button disabled class="px-3 py-2 bg-blue-200 text-blue-500 hover:bg-blue-500 hover:text-white rounded">Pagado</button>
@@ -78,7 +74,7 @@
 
             </div>
             <div>
-                <button wire:click="$set('open', false)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Cancelar</button>
+                <button wire:click="$set('muestraTelefono', false)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Cancelar</button>
             </div>
             <div class="pt-5">
 
