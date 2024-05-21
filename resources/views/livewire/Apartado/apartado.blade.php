@@ -40,8 +40,6 @@
                     @else
                     <td scope="col">
                         <button onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="delete({{ $item->apartado }})" class="px-3 py-2 bg-red-200 text-red-500 hover:bg-red-500 hover:text-white rounded">Liberar</button>
-                    </td>
-                    <td scope="col">
                         <button onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="update({{ $item->apartado }})" class="px-3 py-2 bg-green-200 text-green-500 hover:bg-green-500 hover:text-white rounded">Pagar</button>
                     </td>
                     @endif
