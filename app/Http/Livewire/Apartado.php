@@ -33,10 +33,11 @@ class Apartado extends Component
         return view('livewire.Apartado.apartado');
     }
 
-    public function buscar()
+    public function search()
     {
         $this->muestraTelefono = false;
         $this->render();
+
     }
 
     public function update($id)
@@ -67,7 +68,6 @@ class Apartado extends Component
     public function inicializar()
     {
         $this->muestra = true;
-        $this->render();
     }
 
     public function buscarBoleto()

@@ -1,4 +1,5 @@
 <div>
+<div>
     <div class="grid gap-6 mb-6 md:grid-cols-2 sm:grid-cols-1">
         <div>
             <button wire:click="$set('muestraTelefono', true)" class="px-3 py-2 bg-green-200 text-green-500 hover:bg-green-700 hover:text-white-100 rounded">Buscar Telefono</button>
@@ -61,7 +62,7 @@
             <div class="grid gap-6 mb-6 md:grid-cols-1">
                 <div>
                     <label for="telefono" class="block mb-2 text-sm font-medium text-gray">Teléfono</label>
-                    <input type="text" id="searchterm" wire:model="telefono" class="{{ $errors->has('telefono') ? ' border-red-500' : 'border-lime-500' }} bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <input type="text" id="searchterm" wire:model.defer="telefono" class="{{ $errors->has('telefono') ? ' border-red-500' : 'border-lime-500' }} bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     @error('telefono')
                     <span class="text-red-500 text-xs italic">{{ $message }}</span>
                     @enderror
@@ -71,7 +72,7 @@
 
         <x-slot name="footer">
             <div>
-                <button wire:click="buscar()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Buscar</button>
+                <button wire:click="search()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Buscar</button>
             </div>
             <div class="pt-5">
 
