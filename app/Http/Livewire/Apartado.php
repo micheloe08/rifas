@@ -9,9 +9,12 @@ use App\Models\Detalle;
 
 class Apartado extends Component
 {
-    public $data, $apartado, $telefono;
+    public $data, $apartado, $telefono, $numeroBusqueda, $boletoBuscar;
     public $alerta = false;
     public $muestraTelefono = false;
+    public $muestra = false;
+    public $ganador = false;
+    public $buscadorModal = false;
 
     public function render()
     {
@@ -24,6 +27,9 @@ class Apartado extends Component
         inner join sorteos on apartados.sorteo_id = sorteos.id where sorteos.status = 1');
         $this->apartado = $busqueda;
         $this->data = Apartados::with('cliente', 'sorteo')->get();
+        if ($this->muestra) {
+            return view('livewire.Apartado.buscador');
+        }
         return view('livewire.Apartado.apartado');
     }
 
@@ -56,5 +62,34 @@ class Apartado extends Component
             $this->alerta = false;
             session()->flash('message', 'Fallo al Liberar!');
         }
+    }
+
+    public function inicializar()
+    {
+        $this->muestra = true;
+        $this->render();
+    }
+
+    public function buscarBoleto()
+    {
+        $buscar = DB::select('
+        select clientes.nombre, clientes.telefono, clientes.ciudad, clientes.estado, detalles.boleto, apartados.estatus
+        from detalles
+        inner join apartados on detalles.apartado_id = apartados.id
+        inner join clientes on apartados.cliente_id = clientes.id
+        inner join sorteos on apartados.sorteo_id = sorteos.id
+        where sorteos.status = 1 and detalles.boleto = :boleto', ['boleto' => $this->boletoBuscar]);
+        if (!$buscar) {
+            session()->flash('message', 'No Fue Vendido este Boleto!');
+        }
+        $this->ganador = $buscar;
+        $this->buscadorModal = true;
+    }
+
+    public function finalizar()
+    {
+        $this->muestra = false;
+        $this->buscadorModal = false;
+        $this->render();
     }
 }
