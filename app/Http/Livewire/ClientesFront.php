@@ -35,9 +35,10 @@ class ClientesFront extends Component
         WHERE so.status = 1');
         $this->numeros = array();
         $this->boletos_disponibles = array();
-        for ($i = 1; $i <= 10000 ; $i++)
+        for ($i = 1; $i <= 1000 ; $i++)
         {
-            array_push($this->numeros, $i);
+            $eleccion = mt_rand(1,59999);
+            array_push($this->numeros, $eleccion);
         }
         foreach ($this->boletos as $item) {
             if (in_array($item->boleto, $this->numeros)) {
@@ -179,7 +180,7 @@ class ClientesFront extends Component
         $this->animar = false;
 
             do {
-                $eleccion = mt_rand(1,99999);
+                $eleccion = mt_rand(1,59999);
                 $numero = DB::select('select detalles.boleto FROM
                     detalles
                     INNER JOIN apartados on detalles.apartado_id = apartados.id

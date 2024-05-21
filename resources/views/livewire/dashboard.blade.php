@@ -1,5 +1,5 @@
 
-    <div class="grid gap-4 mb-4 md:grid-cols-2  dark:bg-dark-eval-1 font-medium text-black bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
+    <div class="grid gap-4 mb-4 md:grid-cols-3  dark:bg-dark-eval-1 font-medium text-black bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
         <div>
                 <x-card-body title="{{$sorteos->descripcion}}" informacion="50" ruta="{{ route('clientes') }}">
                     <ul class="font-medium text-black">

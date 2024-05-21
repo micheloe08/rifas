@@ -1,11 +1,16 @@
 <div>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="grid gap-6 mb-6 md:grid-cols-2 sm:grid-cols-1">
         <div>
-            <button wire:click="$set('muestraTelefono', true)" class="px-3 py-2 bg-green-200 text-green-500 hover:bg-green-700 hover:text-white-100 rounded">Buscar</button>
+            <button wire:click="$set('muestraTelefono', true)" class="px-3 py-2 bg-green-200 text-green-500 hover:bg-green-700 hover:text-white-100 rounded">Buscar Telefono</button>
+        </div>
+        <div>
+            <button wire:click="inicializar()" class="px-3 py-2 bg-blue-200 text-blue-500 hover:bg-blue-700 hover:text-white-100 rounded">Buscar Boleto</button>
         </div>
         <div class="pt-5">
 
         </div>
+    </div>
+
         @if (session()->has('message'))
             @if ($alerta)
                 <x-success-alert />

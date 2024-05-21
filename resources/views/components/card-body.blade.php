@@ -5,16 +5,12 @@
     'slot' => 'nada',
     'texto_boton' => 'Borrar'
 ])
-<div class="max-w-sm p-1 ml-10 mr-10 text-center items-center rounded-lg dark:bg-white dark:border-gray-700 border-slate-950">
-    <a href="#">
-        <h5 class="mb-2 text-2xl font-bold text-center tracking-tight text-black dark:text-black">{{$title}}</h5>
-    </a>
-    <p class="mb-3 items-center font-normal text-gray-700 dark:text-white">
+<div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$title}}</h5>
+
+    <p class="font-normal text-gray-700 dark:text-gray-400">
         {{$slot}}
     </p>
-    <div class="pt-5">
-
-    </div>
-    <div class="grid gap-8 mb-8">
-    </div>
+    </a>
 </div>
