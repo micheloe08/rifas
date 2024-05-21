@@ -15,7 +15,7 @@
             <span class="font-medium border-cyan-700 border-spacing-1"> ⚠️Atención este es tu boleto oficial⚠️, toma una captura de pantalla y guardala.<br> (✅ = pago confirmado, ⏳ = pago pendiente)</span>
         </div>
         <div class="container py-10 px-10 mx-0 min-w-full flex flex-col items-center">
-            <button wire:click="$set('mirar', false)" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Terminar</button>
+            <button class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><a href="https://wa.me/5216721268972?text=Hola+qué+tal!+Aparte+los+siguientes+numeros+{{$comprados}}.%0A%0AEn+la+Edición+{{ $data->descripcion }}%0A%0ANombre:+{{$nombre}}%0A%0AAtención%0A%0A------------------------------------------%0A%0AEl siguiente paso es enviar foto del comprobante de pago por aquí%0A%0ATus boletos quedan apartados por 24 hrs%0A%0A 🌐 https://rifaselmorrodeculiacan.com">TERMINAR</a></button>
           </div>
         <div class="grid gap-4 mb-4 w-full bg-gray-200">
             <dl class="max-w-full text-white divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
