@@ -35,7 +35,7 @@ class Dashboard extends Component
     {
         $this->boletosPrueba = Detalle::all();
         foreach ($this->boletosPrueba as $item) {
-            DB::update('update boletos set status = 1 where boleto = :boleto', ['boleto' => $item->boleto]);
+            DB::update('update boletos set status = 1 where boleto = :id', ['id' => $item->boleto]);
         }
         return 'Exito';
     }
