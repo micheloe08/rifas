@@ -35,9 +35,9 @@ class ClientesFront extends Component
         WHERE so.status = 1');
         $this->numeros = array();
         $this->boletos_disponibles = array();
-        for ($i = 1; $i <= 1000 ; $i++)
+        for ($i = 1; $i <= 500 ; $i++)
         {
-            $eleccion = mt_rand(1,59999);
+            $eleccion = mt_rand(1,5000);
             array_push($this->numeros, $eleccion);
         }
         foreach ($this->boletos as $item) {
@@ -88,7 +88,6 @@ class ClientesFront extends Component
             array_push($this->numerosElegidos, $numero);
         }
         $this->mostrar = true;
-        $this->render();
     }
 
     public function borrar($numero)
