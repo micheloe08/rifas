@@ -24,6 +24,7 @@
 
                     </ul>
                 </x-card-body>
+                <button wire:click="actualizar()">Actualizar</button>
         </div>
         <div>
             <x-card-body title="Apartados" informacion="50" ruta="{{ route('clientes') }}">

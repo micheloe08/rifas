@@ -6,11 +6,12 @@ use Livewire\Component;
 use App\Models\Clientes;
 use App\Models\Sorteos;
 use App\Models\Apartados;
+use App\Models\Detalle;
 use Illuminate\Support\Facades\DB;
 
 class Dashboard extends Component
 {
-    public $sorteos, $num_apartados, $num_pagados, $clientes, $boletos, $apartados, $conteo_apartados, $dinero_pagado;
+    public $sorteos, $num_apartados, $num_pagados, $clientes, $boletos, $apartados, $conteo_apartados, $dinero_pagado, $boletosPrueba;
     public $paga = 0;
     public $pagados = 0;
     public function render()
@@ -28,5 +29,14 @@ class Dashboard extends Component
        $this->num_pagados = $this->paga;
        $this->dinero_pagado = $this->pagados;
        return view('livewire.dashboard');
+    }
+
+    public function actualizar()
+    {
+        $this->boletosPrueba = Detalle::all();
+        foreach ($this->boletosPrueba as $item) {
+            DB::update('update boletos set status = 1 where boleto = :boleto', ['boleto' => $item->boleto]);
+        }
+        return 'Exito';
     }
 }
