@@ -88,7 +88,11 @@
 </div>
 <div id = "lista" class="list__buttons w-5/5 bg-gray-50 max-h-screen h-96 overflow-y-auto">
     @foreach ($numeros as $item)
-        <button id="{{$item}}"  class="max-w-12 px-3 py-2 text-xs font-small text-left text-white bg-gray-700 hover:bg-gray-500" wire:click = "selecciona({{$item}})" wire.key ="boleto_{{$item}}">{{mb_str_pad($item, 5, '0', STR_PAD_LEFT)}}</button>
+        @if ($item->status == 0)
+            <button id="{{$item->boleto}}"  class="max-w-12 px-3 py-2 text-xs font-small text-left text-black bg-white hover:bg-gray-200 border border-black" wire:click = "selecciona({{$item->boleto}})" wire.key ="boleto_{{$item->boleto}}">{{mb_str_pad($item->boleto, 5, '0', STR_PAD_LEFT)}}</button>
+        @else
+            <button id="{{$item->boleto}}"  class="max-w-12 px-3 py-2 text-xs font-small text-left text-white bg-white border border-black" disabled>00000</button>
+        @endif
     @endforeach
 <x-dialog-modal wire:model="open">
     <x-slot name="title">
