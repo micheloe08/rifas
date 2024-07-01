@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Sorteos;
 use App\Models\Apartados;
 use App\Models\Detalle;
+use App\Models\Boletos;
 
 class ClientesFront extends Component
 {
@@ -29,21 +30,11 @@ class ClientesFront extends Component
 
     public function render()
     {
-        $this->boletos = DB::select('select de.boleto FROM detalles de
-        INNER JOIN apartados apa on de.apartado_id = apa.id
-        INNER JOIN sorteos so on apa.sorteo_id = so.id
-        WHERE so.status = 1');
+        $this->boletos = Boletos::inRandomOrder()->limit(500)->get();
         $this->numeros = array();
         $this->boletos_disponibles = array();
-        for ($i = 1; $i <= 500 ; $i++)
-        {
-            $eleccion = mt_rand(1,5000);
-            array_push($this->numeros, $eleccion);
-        }
         foreach ($this->boletos as $item) {
-            if (in_array($item->boleto, $this->numeros)) {
-                unset($this->numeros[$item->boleto - 1]);
-            }
+            array_push($this->numeros, $item);
         }
         $this->datas = Sorteos::where('status', '=', 1)->first();
         if ($this->newClass) {
@@ -138,6 +129,9 @@ class ClientesFront extends Component
                     'apartado_id' => $ultimoId,
                     'boleto' => $elegidos
                 ]);
+                $actualizarBoleto = Boletos::find($elegidos);
+                $actualizarBoleto->status = 1;
+                $actualizarBoleto->save();
                 $cadenas[] = $elegidos;
             }
                 $apartado = Apartados::latest()->first()->id;
@@ -156,11 +150,9 @@ class ClientesFront extends Component
         $this->validate([
             'buscar' => 'required|numeric|min:0|not_in:0|max:59999|max_digits:5'
         ]);
-        $numero = DB::select('select detalles.boleto FROM
-        detalles
-        INNER JOIN apartados on detalles.apartado_id = apartados.id
-        INNER JOIN sorteos on apartados.sorteo_id = sorteos.id
-        where sorteos.status = 1 and detalles.boleto = :numero', ['numero' => $this->buscar]);
+        $numero = DB::select('select boletos.boleto FROM
+        boletos
+        where boletos.status = 1 and boletos.boleto = :numero', ['numero' => $this->buscar]);
 
         if (!$numero) {
             $this->selecciona($this->buscar);
@@ -177,22 +169,12 @@ class ClientesFront extends Component
         $contador = 0;
         $this->open = false;
         $this->animar = false;
-
-            do {
-                $eleccion = mt_rand(1,59999);
-                $numero = DB::select('select detalles.boleto FROM
-                    detalles
-                    INNER JOIN apartados on detalles.apartado_id = apartados.id
-                    INNER JOIN sorteos on apartados.sorteo_id = sorteos.id
-                    where sorteos.status = 1 and detalles.boleto = :numero', ['numero' => $eleccion]);
-                if (!$numero) {
-                    $this->selecciona($eleccion);
-                    $contador++;
-                }
+        $numero = Boletos::inRandomOrder()->where('status', '=', 0)->limit($this->cantidad_boletos)->get();
+            foreach ($numero as $n) {
+                $this->selecciona($n->boleto);
             }
-            while ($contador < $this->cantidad_boletos);
-            $this->alerta = true;
-            session()->flash('message', 'Generados Correctamente');
+        $this->alerta = true;
+        session()->flash('message', 'Generados Correctamente');
     }
 
 }
