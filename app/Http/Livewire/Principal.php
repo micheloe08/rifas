@@ -13,6 +13,7 @@ class Principal extends Component
     public $boletaje = false;
     public $consulta = false;
     public $mirar = false;
+    public $alerta = false;
 
     public function render()
     {
@@ -35,21 +36,32 @@ class Principal extends Component
 
         $clientes = Clientes::where('telefono', '=', $this->depurar)->first();
 
-        $conjunto = array();
-        foreach ($encontrar as $item){
-            $conjunto[] = $item->boleto;
-        }
-        $this->comprados = implode(', ', $conjunto);
+        if ($encontrar) {
+            $conjunto = array();
+            foreach ($encontrar as $item){
+                $conjunto[] = $item->boleto;
+            }
+            $this->comprados = implode(', ', $conjunto);
 
-        $this->nombre = $clientes->nombre;
-        $this->clientes = $clientes->telefono;
-        $this->estado = $clientes->estado;
-        $this->ciudad = $clientes->ciudad;
-        $this->comprados = $this->comprados;
-        $this->mirar = true;
-        $this->depurar = null;
-        $this->consulta = false;
-        $this->render();
+            $this->nombre = $clientes->nombre;
+            $this->clientes = $clientes->telefono;
+            $this->estado = $clientes->estado;
+            $this->ciudad = $clientes->ciudad;
+            $this->comprados = $this->comprados;
+            $this->mirar = true;
+            $this->depurar = null;
+            $this->consulta = false;
+            $this->render();
+        } else {
+            $this->alerta = false;
+            $this->comprados = 'No se encontraron boletos en esta rifa con el numero ' . $this->depurar;
+            session()->flash('message', $this->comprados);
+            $this->mirar = false;
+            $this->depurar = null;
+            $this->consulta = true;
+            $this->render();
+        }
+
     }
 
 }
