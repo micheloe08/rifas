@@ -16,7 +16,8 @@ class Sorteos extends Component
     $ganador_principal, $bono_ganado, $evidencia, $selected_id;
 
     public $updateMode = false;
-    public $searchTerm;
+    public $sorteo;
+    public $alerta = false;
 
     public function render()
     {
@@ -70,5 +71,20 @@ class Sorteos extends Component
         ]);
 
         $this->resetInput();
+    }
+
+    public function edit($id)
+    {
+        $busqueda = Sorteo::find($id);
+        $update = $busqueda->update([
+            "status" => 0
+        ]);
+        if ($update)
+        {
+            $this->alerta = true;
+            session()->flash('message', 'Sorteo Finalizado');
+        } else {
+            session()->flash('message', 'Error al finalizar Sorteo');
+        }
     }
 }
