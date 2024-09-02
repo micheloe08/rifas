@@ -7,6 +7,7 @@ use App\Models\Clientes;
 use App\Models\Sorteos;
 use App\Models\Apartados;
 use App\Models\Detalle;
+use App\Models\Boletos;
 use Illuminate\Support\Facades\DB;
 
 class Dashboard extends Component
@@ -18,9 +19,11 @@ class Dashboard extends Component
     {
         $this->apartados = Apartados::with('cliente', 'sorteo')->get();
         $this->sorteos = Sorteos::where('status', '=', 1)->first();
+        $contarClientes = Apartados::where('sorteo_id', '=', $this->sorteos->id);
         $this->clientes = DB::table('clientes')->count();
-        $this->conteo_apartados = DB::table('apartados')->count();
-        $this->num_apartados = DB::table('detalles')->count();
+        $this->conteo_apartados = $contarClientes->count();
+        $numeros = Boletos::where('status', '=', 1);
+        $this->num_apartados = $numeros->count();
         $pagados = DB::select('select boletos, costo from apartados where estatus = :pagado', ['pagado' => 'Pagado']);
         foreach ($pagados as $pagado) {
             $this->paga += $pagado->boletos;
